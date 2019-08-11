@@ -6,10 +6,6 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  @ViewChild('myDiv') myDiv: ElementRef;
-  @ViewChild('myDiv2') myDiv2: ElementRef;
-  @ViewChild('myhighlights') myhighlights: ElementRef;
-  @ViewChild('mybackdrop') mybackdrop: ElementRef;
   public query: string;
   textareaValue: any;
   textareaValue2: any;
@@ -18,22 +14,13 @@ export class AppComponent {
   first: any;
   second: any;
   arrayTemp: any[] = [];
-  linesCOunt: any[] = [];
-  // Add ES6 polyfills.
   constructor() {
-    // var diff = diff;
     this.first = { a: 10, b: 20, i: 60, c: [{ d: 30 }], g: { h: 0 } };
     this.second = { a: 20, c: [{ d: 30 }, { f: 11 }], e: 40, g: { h: 50 }, i: 60 };
-    /* this.first = { a:10, b:15 };
-    this.second = { a:20 , b: 30 }; */
     this.textareaValue = JSON.stringify(this.first, undefined, 4);
     this.textareaValue2 = JSON.stringify(this.second, undefined, 4);
-    this.theHtmlString = JSON.stringify(this.first, undefined, 4);
-    this.theHtmlString2 = JSON.stringify(this.second, undefined, 4);
     this.textareaValue2 = this.textareaValue2;
-    this.linesCOunt = this.textareaValue.split('\n');
-    
-  // --- new
+  }
   applyHighlights(text, match) {
     var regex = new RegExp('"' + match + '.*?', 'g');
     text = text
@@ -62,28 +49,18 @@ export class AppComponent {
     const highlightingVal2 = (this.textareaValue2.substring(this.textareaValue2.indexOf(key), this.textareaValue2.indexOf('\n', this.textareaValue2.indexOf(key))));
     let highlightedText2 = this.applyHighlights(text2, highlightingVal2);
     this.theHtmlString2 = highlightedText2;
-    console.log(this.theHtmlString2.indexOf(key));
-    // this.myhighlights.nativeElement.html(highlightedText);
   }
-
-
-  //---- new
 
   iterate(obj) {
     Object.keys(obj).forEach(key => {
-      // if(isNaN(+key) ){
       this.arrayTemp.push(key);
-      // }
-      //console.log('key: '+ key + ', value: '+obj[key]);
       if (typeof obj[key] === 'object' && (Object.keys(obj).length !== 0)) {
         this.iterate(obj[key])
       }
       else {
         if (isNaN(+key)) {
-          // console.log('key: '+ key + ', value: '+obj[key]);
           this.handleInput(key)
         } else {
-          // this.iterate(obj[this.arrayTemp[this.arrayTemp.length- (1+ (+key))]])
           if (this.first[this.arrayTemp[(this.arrayTemp.length - 1) - (1 + (+key))]][key]) {
             this.iterate(this.first[this.arrayTemp[(this.arrayTemp.length - 1) - (1 + (+key))]][key]);
           } else {
@@ -91,14 +68,13 @@ export class AppComponent {
           }
 
         }
-
-
       }
-
     })
   }
 
   onCLick() {
+    this.theHtmlString = JSON.stringify(this.first, undefined, 4);
+    this.theHtmlString2 = JSON.stringify(this.second, undefined, 4);
     this.iterate(this.diffOld(this.first, this.second));
   }
 
