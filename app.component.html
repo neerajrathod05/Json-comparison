@@ -1,0 +1,17 @@
+<div class="">
+    <div class="row">
+        <div class="col-md-6">
+            <div #mybackdrop class="backdrop">
+            <div #myhighlights class="highlights" [innerHTML]="theHtmlString"></div>
+            </div>
+            
+        </div>
+        <div class="col-md-6" style="margin-left: 580px;">
+            <div #mybackdrop2 class="backdrop">
+                <div #myhighlights2 class="highlights" [innerHTML]="theHtmlString2"></div>
+            </div>
+          
+        </div>
+    </div>
+</div>
+<button (click)="onCLick()"  style="margin-left: 1300px;">click</button>
