@@ -32,28 +32,7 @@ export class AppComponent {
     this.theHtmlString2 = JSON.stringify(this.second, undefined, 4);
     this.textareaValue2 = this.textareaValue2;
     this.linesCOunt = this.textareaValue.split('\n');
-    console.log(this.linesCOunt.length);
-    var a = {
-      foo: {
-        aa: 1,
-        bb: 2
-      }
-    }
-    var b = {
-      foo: {
-        bb: 3,
-        dd: 4
-      }
-    }
-  }
-
-  getNumber(num) {
-    return new Array(num);
-  }
-
-
-
-
+    
   // --- new
   applyHighlights(text, match) {
     var regex = new RegExp('"' + match + '.*?', 'g');
